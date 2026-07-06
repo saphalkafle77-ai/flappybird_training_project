@@ -27,5 +27,5 @@ def run(self, is_training = True, render = False)
 
         #checking if the player is still alive
         if terminated:
-            break
+            break 
     env.close
