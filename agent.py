@@ -70,7 +70,8 @@ class Agent:
                     action = env.action_space.sample()
                     action = torch.tensor(action,dtype = torch.long,device = device)
                 else:
-                    action = policy_dqn(state.unsqueeze(dim=0)).argmax() #exploit
+                    with torch.no_grad():
+                        action = policy_dqn(state.unsqueeze(dim=0)).squeeze().argmax() #exploit
 
                 #Processing: terminate => done
                 next_state,reward,terminated , _, _ = env.step(action.item())
